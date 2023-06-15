@@ -1,8 +1,12 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace YourAnimeList;
 
 public class AnimeList
 {
-    public int Id { get; set; }
+    [Key]
+    public int AnimeListId { get; set; }
     public string? AnimeName { get; set; }
 
     public int AnimeRating { get; set; }
@@ -19,11 +23,19 @@ public class AnimeList
 }
 
 public class VA {
-    public int Id { get; set; }
+    [Key]
+    public int VAId { get; set; }
     public string? VAName { get; set; }
+
+    [ForeignKey("AnimeList")]
+    public int AnimeListId { get; set; }
 }
 
 public class AnimeCharacters {
-    public int Id { get; set; }
+    [Key]
+    public int AnimeCharactersId { get; set; }
     public string? AnimeCharactersName { get; set; }
+
+    [ForeignKey("AnimeList")]
+    public int AnimeListId { get; set; }
 }

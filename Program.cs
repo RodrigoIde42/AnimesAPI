@@ -1,11 +1,9 @@
 using Microsoft.EntityFrameworkCore;
-using YourAnimeList.Models;
 using Microsoft.Extensions.DependencyInjection;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<AnimeLists>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("AnimeLists")));
+    options.UseSqlite(builder.Configuration.GetConnectionString("AnimeLists")));
 
 // Add services to the container.
 

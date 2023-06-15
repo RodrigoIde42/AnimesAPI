@@ -46,7 +46,7 @@ namespace YourAnimeList.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAnimeList(int id, AnimeList animeList)
         {
-            if (id != animeList.Id)
+            if (id != animeList.AnimeListId)
             {
                 return BadRequest();
             }
@@ -78,9 +78,9 @@ namespace YourAnimeList.Controllers
         public async Task<ActionResult<AnimeList>> PostAnimeList(AnimeList animeList)
         {
             _context.AnimeList.Add(animeList);
-            await _context.SaveChangesAsync();  
+            await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetAnimeList), new { id = animeList.Id }, animeList);
+            return CreatedAtAction("GetAnimeList", new { id = animeList.AnimeListId }, animeList);
         }
 
         // DELETE: api/AnimeList/5
@@ -101,7 +101,7 @@ namespace YourAnimeList.Controllers
 
         private bool AnimeListExists(int id)
         {
-            return _context.AnimeList.Any(e => e.Id == id);
+            return _context.AnimeList.Any(e => e.AnimeListId == id);
         }
     }
 }
